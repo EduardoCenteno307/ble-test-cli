@@ -2,7 +2,7 @@
 
 A small command-line BLE central for testing Bluetooth LE devices with an **nRF52840 dongle**. It can be used interactively or scripted for automated tests, with exit codes that work in CI or test harnesses.
 
-> **Status:** early and experimental. Only use it on devices you own or are authorized to test.
+> **Status:** used for production device testing and working well. Connection stability still needs improvement (see [Known issues](#known-issues)). Only use it on devices you own or are authorized to test.
 
 ## What it does
 
@@ -99,6 +99,11 @@ write 12345678-1234-1234-1234-123456789012 01ff
 
 - The bond database is kept in memory, so every run pairs fresh.
 - Tested with: Python 3.10, blatann 0.6.0, nRF52840 dongle _(fill in OS and dongle firmware version)_
+
+## Known issues
+
+- **Occasional disconnections.** The BLE link can drop during a session. There is no automatic reconnect yet, so in automated runs a dropped link shows up as a failed command (exit code 1). Re-running the script is the current workaround.
+- Improvements to connection stability are planned.
 
 ## License
 
